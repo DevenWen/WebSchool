@@ -25,8 +25,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
+  <script type="text/javascript">
+    	$(function(){
+    		
+    	/*
+    		$('#myModal').modal({ keyboard: false });   // initialized with no keyboard
+			$('#myModal').modal('show');             // 初始化后立即调用 show 方法
+		*/
+			//$.foo();
+			//$.foo2();
+			//$.plugin.foo2();
+			$('h1').foo6({
+				aaa:'3',
+				bbb:'5'
+			});
+		});
+    	</script>
+  
   <body>
-    	这是龙青的jsp. <br>
+    	<h1>jQuery扩展测试区</h1> <br>
     	
     	<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -51,13 +68,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 		  </div>
 		</div>
+		
+		<div>
+				<!-- 新的代码可以写在这里 -->
+		
+		
+		
+		
+		</div>
+		
+		
+		
+		
+		
+		
+		
     	
-    	<script type="text/javascript">
-    	$(function(){
-    		$('#myModal').modal({ keyboard: false });   // initialized with no keyboard
-			$('#myModal').modal('show');             // 初始化后立即调用 show 方法
-    	});
-    	</script>
+    	
     	
   </body>
 </html>
