@@ -2,6 +2,7 @@ package com.cn.qpm.usermanage.controller;
 
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,14 @@ public class LoginController {
 		} else {
 			response.sendRedirect(requset.getContextPath()+"/view/login.jsp");
 		}
+	}
+	
+	@RequestMapping(value = "logout", method = RequestMethod.POST)
+	@ResponseBody
+	public Map loginout(){
+		
+		
+		return null;
 	}
 	
 

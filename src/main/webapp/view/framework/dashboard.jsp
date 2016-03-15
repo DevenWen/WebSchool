@@ -73,10 +73,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </ul>
         
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="#">欢迎你，<%=user.getName() %></a></li>
+            
+            
+            <!-- a调用一个js方法，ajax登出系统 -->
+            <li><a href="<%=path %>/user/logout.action">退出系统</a></li>
           </ul>
         </div>
       </div>
