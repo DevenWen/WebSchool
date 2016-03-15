@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             
             <!-- a调用一个js方法，ajax登出系统 -->
-            <li><a href="<%=path %>/user/logout.action">退出系统</a></li>
+            <li><a href="javascript:logout();">退出系统</a></li>
           </ul>
         </div>
       </div>
@@ -108,5 +108,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
   
   <script src="<%=path %>/js/dashborad.js"></script>
+  <script type="text/javascript">
+  	
+  	//定义登陆的ajax函数
+  	function logout(){
+  		alert("函数调用到这里！");
+  		$.ajax({
+					type : "POST",
+					url : ctx + '/user/logout.action',
+					success : function(data) {
+							debugger;
+							var result = eval('('+data+')');
+							if (result = result.result){
+								alert("注销成功");
+							}
+							location.href = ctx + "/view/login.jsp";
+						}
+				});
+  	
+  	}
+  	
+  </script>
   
 </html>

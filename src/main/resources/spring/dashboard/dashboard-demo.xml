@@ -17,7 +17,7 @@
     	</db:topkids>
     	<db:sidekids> 
     		<db:Barpoint title="侧导航1" type="leave" 
-    			icon="glyphicon glyphicon-duplicate active" url=":{path}/index.jsp"></db:Barpoint>
+    			icon="glyphicon glyphicon-duplicate active" url=":{path}/longqing.jsp"></db:Barpoint>
     		<db:Barpoint title="侧导航2" type="parent" 
     			icon="glyphicon glyphicon-duplicate" url="##">
     			<db:kids>
