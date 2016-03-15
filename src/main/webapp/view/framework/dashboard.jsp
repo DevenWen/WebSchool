@@ -6,7 +6,7 @@
 <%@page import="com.cn.qpm.framework.dashboard.model.DashboardEntry"%>
 <%@page import="com.cn.qpm.usermanage.model.LoginUser"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="qpm" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="w" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
