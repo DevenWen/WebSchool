@@ -6,6 +6,7 @@
     
     <qpm:LoginUser id="testuser123" userid="123" name="wenkangqiang" 
     	email="945766863@qq.com" password="55555" authority="10"></qpm:LoginUser>
+    
     <qpm:LoginUser id="testuser123455" userid="234" name="wenkangqiang222"></qpm:LoginUser>
     
 </beans>  

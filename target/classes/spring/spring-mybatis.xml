@@ -40,9 +40,8 @@
         <property name="dataSource" ref="dataSource" />  
         <!-- 自动扫描mapping.xml文件 -->  
         <property name="mapperLocations" value="classpath:com/cn/qpm/mapping/*.xml"></property>  
-        <property name="plugins">
+         <property name="plugins">
 		    <array>
-			<!-- 配置mybatis的分页插件，代码源自一位mybatis的大侠 -->	    
 		      <bean class="com.github.pagehelper.PageHelper">
 		        <property name="properties">
 		          <value>
@@ -59,6 +58,11 @@
         <property name="basePackage" value="com.cn.qpm.usermanage.dao" />  
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
     </bean>
+    
+    <!-- 通用mapper的配置 -->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <property name="basePackage" value="com.cn.qpm.usermanage.dao"/>
+	</bean>
 	
 	<bean id="transactionManager"  
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
