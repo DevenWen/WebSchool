@@ -14,12 +14,15 @@
   			<!-- spring设置和扩展 -->
   			classpath:spring/spring-applicationContext.xml,
   			
-  			<!-- 测试dashboard -->
+  			<!-- 测试dashboard 
   			classpath:spring/dashboard/dashboard-demo.xml
+  			-->
   			
   			<!-- webSchool项目中的实体配置信息（我都不知道自己再说什么...haha）   -->
   			classpath:spring/Spring-webSchool-entry.xml
   			
+  			<!-- 龙青的项目 -->
+  			classpath:spring/long/long-dashboard/dashboard-demo.xml
   			
   	</param-value>
   </context-param>
