@@ -23,10 +23,10 @@
 ;(function($, undefined) {
 	"use strict";
 
-	var pluginName = 'scojs_modal';
+	var pluginName = 'scojs_modal';		//插件名字
 
 	function Modal(options) {
-		this.options = $.extend({}, $.fn[pluginName].defaults, options);
+		this.options = $.extend({}, $.fn[pluginName].defaults, options);	//把参数写入options中
 		this.$modal = $(this.options.target).attr('class', 'modal fade').hide();
 		var self = this;
 
@@ -39,7 +39,7 @@
 		init();
 	}
 
-
+	//扩展Modal的属性，其实就是为Modal添加方法
 	$.extend(Modal.prototype, {
 		show: function() {
 			var self = this
@@ -142,7 +142,10 @@
 		}
 	});
 
+	//返回一个函数定义给pluginName属性
+	/*
 
+	*/
 	$.fn[pluginName] = function(options) {
 		return this.each(function() {
 			var obj;

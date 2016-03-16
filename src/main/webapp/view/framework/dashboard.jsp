@@ -110,22 +110,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script src="<%=path %>/js/dashborad.js"></script>
   <script type="text/javascript">
   	
-  	//定义登陆的ajax函数
+  	//定义注销的ajax函数
   	function logout(){
-  		alert("函数调用到这里！");
   		$.ajax({
-					type : "POST",
-					url : ctx + '/user/logout.action',
-					success : function(data) {
+				type : "POST",
+				url : ctx + '/user/logout.action',
+				success : function(data) {
 							debugger;
 							var result = eval('('+data+')');
 							if (result = result.result){
 								alert("注销成功");
 							}
 							location.href = ctx + "/view/login.jsp";
-						}
-				});
-  	
+					}
+		});
   	}
   	
   </script>

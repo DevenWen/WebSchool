@@ -24,8 +24,24 @@
 	<jsp:include page="/view/common/head.jsp"></jsp:include>
 	
   </head>
-  	<w:test name="我是测试的标签" id="testid"></w:test>
-  
+  	<h1>jQuery扩展测试栏</h1>
+  	<h1>jQuery扩展测试栏2</h1>
+  	<script type="text/javascript">
+  		//sco.js
+  		$(function(){
+  			$('h1').scojs_modal({
+  			  title: '对象调用modal',
+  			  content: "No, they're not"
+  			});
+  		});
+  		
+  		/*
+  		$("h1").hide("fast",function(){
+  		   alert("Animation Done.");
+  		 });
+  		*/
+  		
+  	</script>
   
   <body>
   
