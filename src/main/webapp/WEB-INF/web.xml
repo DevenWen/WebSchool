@@ -9,18 +9,14 @@
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>
-  			<!-- mybatis结合spring的xml文件 -->
-  			classpath:spring/spring-mybatis.xml,
   			<!-- spring设置和扩展 -->
   			classpath:spring/spring-applicationContext.xml,
-  			
+  			<!-- mybatis结合spring的xml文件 -->
+  			classpath:spring/spring-mybatis.xml,
   			<!-- 测试dashboard -->
   			classpath:spring/dashboard/dashboard-demo.xml
-  			
   			<!-- webSchool项目中的实体配置信息（我都不知道自己再说什么...haha）   -->
   			classpath:spring/Spring-webSchool-entry.xml
-  			
-  			
   	</param-value>
   </context-param>
   
