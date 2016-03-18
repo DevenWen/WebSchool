@@ -1,107 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-    xmlns="http://java.sun.com/xml/ns/javaee"  
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"  
-    version="3.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <display-name>Archetype Created Web Application</display-name>
-  
-  
   <context-param>
-  	<param-name>contextConfigLocation</param-name>
-  	<param-value>
-  			<!-- mybatis结合spring的xml文件 -->
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+  			
   			classpath:spring/spring-mybatis.xml,
-  			<!-- spring设置和扩展 -->
+  			
   			classpath:spring/spring-applicationContext.xml,
   			
-  			<!-- 测试dashboard -->
-  			classpath:spring/dashboard/dashboard-demo.xml
   			
-  			<!-- webSchool项目中的实体配置信息（我都不知道自己再说什么...haha）   -->
-  			classpath:spring/Spring-webSchool-entry.xml
   			
+  			
+  			classpath:spring/Spring-webSchool-entry.xml,
+  			
+  			
+  			classpath:spring/long/long-dashboard-demo.xml
   			
   	</param-value>
   </context-param>
-  
-  
-  <!-- 使用Xbean去对xml文件进行解析 
   <context-param>
-        <param-name>contextClass</param-name>
-        <param-value> org.apache.xbean.spring.context.XmlWebApplicationContext 
-        </param-value>
+    <param-name>contextClass</param-name>
+    <param-value>com.cn.qpm.framework.springdynaload.XmlRefreshWebApplicationContext</param-value>
   </context-param>
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <async-supported>true</async-supported>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>SpringMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SpringMVC</servlet-name>
+    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.do</url-pattern>
+    <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>com.cn.qpm.framework.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <welcome-file-list>
+    <welcome-file>/index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+  
+  <!--龙青配置的servlet  -->
+  <!-- 自评servlet的配置 
+  <servlet>
+  	<servlet-name>sixiangziping</servlet-name>
+  	<servlet-class>com.cn.lon.servlet.SiXiangServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>sixiangziping</servlet-name>
+  	<url-pattern>/SiXiangServlet</url-pattern>
+  </servlet-mapping>
   -->
   
-  <!-- 使用自定义的XmlWebApplicationContext 动态载入xml文件 -->
-  <context-param>
-  		<param-name>contextClass</param-name>
-  		<param-value>com.cn.qpm.framework.springdynaload.XmlRefreshWebApplicationContext</param-value>
-  </context-param>
-  
-  
-  <!-- 编码过滤器 -->
-  <filter>
-  	<filter-name>encodingFilter</filter-name>
-  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-  	<async-supported>true</async-supported>
-  	<init-param>
-  		<param-name>encoding</param-name>
-  		<param-value>UTF-8</param-value>
-  	</init-param>
-  </filter>
-  
-  <filter-mapping>
-  	<filter-name>encodingFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
-  
-  <!-- Spring监听器 -->
-  <listener>
-  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  
-  <!-- 防止Spring内存溢出监听器 -->
-  <listener>
-  	<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-  </listener>
-  
-  <!-- Spring MVC servlet -->
-  <servlet>
-  	<servlet-name>SpringMVC</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<init-param>
-  		<param-name>contextConfigLocation</param-name>
-  		<param-value>classpath:spring/spring-mvc.xml</param-value>
-  	</init-param>
-  	<load-on-startup>1</load-on-startup>
-  	<async-supported>true</async-supported>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>SpringMVC</servlet-name>
-  	<!-- Spring MVC 相应 .html -->
-  	<url-pattern>*.html</url-pattern>
-	<url-pattern>*.do</url-pattern>
-	<url-pattern>*.action</url-pattern>
-  </servlet-mapping>
-  
-  
-  <!-- 配置登陆过滤器 -->
-  <filter>
-  	<filter-name>loginFilter</filter-name>
-  	<filter-class>com.cn.qpm.framework.filter.LoginFilter</filter-class>
-  </filter>
-  
-  <filter-mapping>
-  	<filter-name>loginFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
-  
-  
-  <welcome-file-list>
-  	<welcome-file>/index.jsp</welcome-file>
-  </welcome-file-list>
   
   
 </web-app>
