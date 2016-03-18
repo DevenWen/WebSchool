@@ -69,21 +69,12 @@
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
-  
-  
-  
-  <!--龙青配置的servlet  -->
-  <!-- 自评servlet的配置 
   <servlet>
-  	<servlet-name>sixiangziping</servlet-name>
-  	<servlet-class>com.cn.lon.servlet.SiXiangServlet</servlet-class>
+    <servlet-name>sixiangziping</servlet-name>
+    <servlet-class>com.cn.lon.servlet.SiXiangServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>sixiangziping</servlet-name>
-  	<url-pattern>/SiXiangServlet</url-pattern>
+    <servlet-name>sixiangziping</servlet-name>
+    <url-pattern>/SiXiangServlet</url-pattern>
   </servlet-mapping>
-  -->
-  
-  
-  
 </web-app>

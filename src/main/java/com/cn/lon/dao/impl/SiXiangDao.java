@@ -5,7 +5,11 @@ import java.util.List;
 import com.cn.lon.dao.ISiXiangDao;
 import com.cn.lon.entity.SiXiang;
 import com.cn.lon.utils.BaseDaoUtil;
-
+/**
+ * 思想品德评分数据层实现
+ * @author Administrator
+ *
+ */
 public class SiXiangDao extends BaseDaoUtil implements ISiXiangDao {
 
 	@Override
