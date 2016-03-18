@@ -72,6 +72,10 @@
     				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
     				 title="系评" type="leave" url="##">
     				 </db:Barpoint>
+    				 
+    				  <db:Barpoint icon="glyphicon glyphicon-pencil" 
+    				 title="加扣分录入" type="leave" url="##">
+    				 </db:Barpoint>
     			</db:kids>
     		</db:Barpoint>
     		
