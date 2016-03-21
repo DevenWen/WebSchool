@@ -10,7 +10,7 @@
     
     	<!-- Spring翻译 --> 
     	<db:topkids>
-    		<db:TopNarPoint title="top导航1" url="wwww.i.am.url.com"
+    		<db:TopNarPoint title="康强的私人网站" url="wwww.i.am.url.com"
     			icon="glyphicon glyphicon-duplicate"></db:TopNarPoint>
     		<db:TopNarPoint title="top导航2" url="www.i.am.url.com"
     			icon="glyphicon glyphicon-duplicate"></db:TopNarPoint>
