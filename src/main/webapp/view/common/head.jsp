@@ -15,11 +15,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <!-- *****************第三方 框架和插件 ****************************** -->
-<!-- bootstrap V3 -->
+<!-- bootstrap V3 
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+-->
+<!-- -->
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/css/bootstrap-theme.min.css">
+
+
+<script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
+ 
+
 
 <!-- *********************我的JS和CSS文件*************************** -->
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/qpm.css">
