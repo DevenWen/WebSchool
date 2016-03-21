@@ -1,5 +1,7 @@
 package com.cn.lon.service.impl;
 
+import java.util.List;
+
 import com.cn.lon.dao.IStudentDao;
 import com.cn.lon.dao.impl.StudentDao;
 import com.cn.lon.entity.Student;
@@ -15,6 +17,11 @@ public class StudentService implements IStudentService {
 	public Student findByEmail(String email) {
 		
 		return studentDao.findByEmail(email);
+	}
+
+	@Override
+	public List<Student> findByMajorAndClas(String major, String clas) {
+		return studentDao.findByMajorAndClas(major, clas);
 	}
 
 }

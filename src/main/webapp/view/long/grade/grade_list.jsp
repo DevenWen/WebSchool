@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>学生综合测评评分表</title>
+<link href="/view/long/css/table.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	table td{
 		/*文字居中*/

@@ -185,7 +185,8 @@ public class GradeServlet extends HttpServlet {
 					request.setAttribute("wt", wt);
 									
 					//4.跳转
-					request.getRequestDispatcher("/view/long/grade/grade_list.jsp").forward(request, response);
+				//	request.getRequestDispatcher("/view/long/grade/grade_list.jsp").forward(request, response);
+					request.getRequestDispatcher("/view/long/bgrade/bgrade_add.jsp").forward(request, response);
 				}								
 				
 			}

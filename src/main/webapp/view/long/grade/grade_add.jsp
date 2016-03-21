@@ -18,7 +18,39 @@
 		border-collapse:collapse;
 	}
 </style>  
+
+<script type="text/javascript">
+	//校验数据
+	function checkText(num1,num2,id){
+		var grade=document.getElementById(id).value; 
+		
+		//var grade=document.getElementsByName("test")[0].value;
+		if(!isNaN(grade)){
+			if(grade >= num1 && grade<=num2){
+				showInfo2(id+"1");
+			}
+			else{
+				showInfo1(id+"1");
+			}
+		}else{
+			showInfo1(id+"1");
+		}
+	
+	}
+	
+	//显示提示信息
+	function showInfo1(id){
+		var message=document.getElementById(id);
+		message.innerHTML="请输入合理的数据".fontcolor("red");
+		
+	}
+	function showInfo2(id){
+		var message=document.getElementById(id);
+		message.innerHTML="";
+	}
+</script>
 </head>
+
 <body>
 	<div align="center">
 		学号：<span>${stuid}</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,27 +67,45 @@
 
             <tr>
             	<td>思想政治观念（15分）</td>
-                <td><input type="text" name="sixiang"/></td>
+                <td>
+                	<input type="text" name="sixiang" id="sixiang" onblur="checkText(0,15,this.id)"/>
+                	<span id="sixiang1"></span>
+                </td>
             </tr>
             <tr>
             	<td>纪律观念（14分）</td>
-                <td><input type="text" name="jilv"/></td>
+                <td>
+                	<input type="text" name="jilv" id="jilv" onblur="checkText(0,14,this.id)"/>
+                	<span id="jilv1"></span>
+                </td>
             </tr>
             <tr>
             	<td>集体观念（13分）</td>
-                <td><input type="text" name="jiti"/></td>
+                <td>
+                	<input type="text" name="jiti" id="jiti" onblur="checkText(0,13,this.id)"/>
+                	<span id="jiti1"></span>
+                </td>
             </tr>
             <tr>
             	<td>基础文明修养（13分）</td>
-                <td><input type="text" name="wenming"/></td>
+                <td>
+                	<input type="text" name="wenming" id="wenming" onblur="checkText(0,13,this.id)"/>
+                	<span id="wenming1"></span>
+                </td>
             </tr>
             <tr>
             	<td>学生公寓表现（15分）</td>
-                <td><input type="text" name="gongyu"/></td>
+                <td>
+                	<input type="text" name="gongyu" id="gongyu" onblur="checkText(0,15,this.id)"/>
+                	<span id="gongyu1"></span>
+                </td>
             </tr>
             <tr>
             	<td>社会实践（15分）</td>
-                <td><input type="text" name="shijian"/></td>
+                <td>
+                	<input type="text" name="shijian" id="shijian" onblur="checkText(0,15,this.id)"/>
+                	<span id="shijian1"></span>
+                </td>
             </tr>
             
             <tr> 
@@ -64,7 +114,10 @@
             
             <tr>
             	<td>学习成绩（90分）</td>
-                <td><input type="text" name="chengji"/></td>
+                <td>
+                	<input type="text" name="chengji" id="chengji" onblur="checkText(0,90,this.id)"/>
+                	<span id="chengji1"></span>
+                </td>
             </tr>
             
             <tr> 
@@ -73,11 +126,17 @@
             
             <tr>
             	<td>体育课分（60分）</td>
-                <td><input type="text" name="tiyu"/></td>
+                <td>
+                	<input type="text" name="tiyu" id="tiyu" onblur="checkText(0,60,this.id)"/>
+                	<span id="tiyu1"></span>
+                </td>
             </tr>
              <tr>
                 <td>文体活动分（10分）</td>
-                <td><input type="text" name="wenti"/></td>
+                <td>
+                	<input type="text" name="wenti" id="wenti" onblur="checkText(0,10,this.id)"/>
+                	<span id="wenti1"></span>
+                </td>
             </tr>
             
             <tr>
