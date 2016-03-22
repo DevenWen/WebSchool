@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        	<iframe id="mainiframe" frameborder="0" scrolling="no" width="100%" height="100%" src=""></iframe>
+        	<iframe id="mainiframe" frameborder="0" scrolling="no" width="100%" height="150%" src=""></iframe>
         </div>
       </div>
     </div>
