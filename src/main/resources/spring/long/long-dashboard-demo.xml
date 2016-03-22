@@ -10,7 +10,7 @@
     
     	<!-- Spring翻译 --> 
     	<db:topkids>
-    		<db:TopNarPoint title="龙青的导航" url="i.am.url.com"
+    		<db:TopNarPoint title="龙青的导航" url="http://www.hupu.com"
     			icon="glyphicon glyphicon-duplicate"></db:TopNarPoint>
     		<db:TopNarPoint title="top导航2" url="www.i.am.url.com"
     			icon="glyphicon glyphicon-duplicate"></db:TopNarPoint>
@@ -31,7 +31,7 @@
 		    			</db:kids>
     				 </db:Barpoint>
     				<db:Barpoint icon="glyphicon glyphicon-duplicate" 
-    				 title="二级导航2" type="leave" url="##"/>
+    				 title="二级导航2" type="leave" url="http://www.hupu.com"/>
     			</db:kids>
     		</db:Barpoint>
     		<db:Barpoint title="侧导航4" type="leave" 

@@ -38,6 +38,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="<%=path %>/css/dashboard.css">
   </head>
   
+   <script type="text/javascript">     
+  
+	function reinitIframe(){  
+		debugger;
+		//var iframe = document.getElementById("mainiframe").contentDocument;  
+		var iframe = document.getElementById("mainiframe").contentWindow;
+		var a = 1;
+		alert(a); 
+		}  
+		  
+	//var timer1 = window.setInterval("reinitIframe()", 500); //定时开始  
+	  
+	function reinitIframeEND(){  
+	}  
+</script> 
+  
+	</script> 
+  
   
   
   <body>
@@ -100,7 +118,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        	<iframe id="mainiframe" frameborder="0" scrolling="no" width="100%" height="100%" src=""></iframe>
+        	<button onclick="reinitIframe();">iframe函数测试</button>
+        	<iframe id="mainiframe" frameborder="0" scrolling="no" width="100%" height="2000" src="" onLoad="reinitIframeEND();"></iframe>
         </div>
       </div>
     </div>
