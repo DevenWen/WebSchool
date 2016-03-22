@@ -38,8 +38,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="<%=path %>/css/dashboard.css">
   </head>
   
-  
-  
   <body>
   	<nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
