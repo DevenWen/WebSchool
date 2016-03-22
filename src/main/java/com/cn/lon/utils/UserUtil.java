@@ -67,4 +67,23 @@ public class UserUtil {
 			
 		return null;				
 	}
+	
+	/**
+	 * 获取当前用户的专业
+	 * @param currentUser
+	 * @return
+	 */
+	public static String getUserMajor(LoginUser currentUser){
+		//判断当前用户的身份
+		if(Integer.parseInt(currentUser.getAuthority())>1){
+			//如果是学生，获取他的email
+			String email = currentUser.getEmail();	
+			//通过email查找获取学生对象
+			Student student= studentService.findByEmail(email);
+			//通过学生用户表获取评分人的专业
+			String stuMajor=student.getMajor();
+			return stuMajor;
+		}
+		return null;	
+	}
 }

@@ -20,4 +20,14 @@ public class StudentDao extends BaseDaoUtil implements IStudentDao {
 		return (list!=null&&list.size()>0) ? list.get(0) : null;
 	}
 
+	@Override
+	public List<Student> findByMajorAndClas(String major, String clas) {
+		String sql="select * from student where major=? and clas=?";
+		
+		Object[] paramsValue = {major,clas};
+		
+		List<Student> list = super.query(sql,paramsValue , Student.class);
+		return list;
+	}
+
 }

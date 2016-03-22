@@ -8,8 +8,8 @@ import com.cn.lon.entity.SiXiang;
  *
  */
 public interface ISiXiangDao {
-	public void addSiXiang(SiXiang sixiang);	//添加思想品德分
-	public void updateSiXiang(SiXiang sixiang);	//更新思想评分
-	public SiXiang findById(String stuid,String gradingtype,String gradingManId);	//根据思想评分编号查询
+	public void addSiXiang(SiXiang sixiang);	//添加评分信息
+	public void updateSiXiang(SiXiang sixiang);	//更新评分信息
+	public SiXiang findById(String stuid,String gradingtype,String gradingManId);	//根据评分各编号查询
 }
 

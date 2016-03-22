@@ -10,9 +10,18 @@ public class Student {
 	private String email;	//学生email
 	private String name;	//学生姓名
 	private String clas;	//班级
+	private String major;	//专业
 	private String sex;		//性别
 	private int age;		//年龄
 	private String position;	//职位
+	
+	
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
 	public String getStuid() {
 		return stuid;
 	}

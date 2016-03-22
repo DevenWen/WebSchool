@@ -69,8 +69,12 @@
     				 title="班评" type="leave" url=":{path}/GradeServlet?method=listGrade&amp;gradingtype=自评">   	
     				 </db:Barpoint>
     				 
+    				  <db:Barpoint icon="glyphicon glyphicon-pencil" 
+    				 title="班评测试" type="leave" url=":{path}/BGradesServlet?method=listStudent&amp;gradingtype=班评">   	
+    				 </db:Barpoint>
+    				 
     				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
-    				 title="系评" type="leave" url="##">
+    				 title="系评" type="leave" url=":{path}/GradesServlet?method=listGrades&amp;gradingtype=自评">
     				 </db:Barpoint>
     				 
     				  <db:Barpoint icon="glyphicon glyphicon-pencil" 
