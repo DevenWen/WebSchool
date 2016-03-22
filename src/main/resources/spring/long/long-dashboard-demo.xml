@@ -69,12 +69,16 @@
     				 title="班评" type="leave" url=":{path}/GradeServlet?method=listGrade&amp;gradingtype=自评">   	
     				 </db:Barpoint>
     				 
-    				  <db:Barpoint icon="glyphicon glyphicon-pencil" 
+    				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
+    				 title="自评测试" type="leave" url=":{path}/GradesServlet?method=listGrades&amp;gradingtype=自评">
+    				 </db:Barpoint>
+    				 
+    				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
     				 title="班评测试" type="leave" url=":{path}/BGradesServlet?method=listStudent&amp;gradingtype=班评">   	
     				 </db:Barpoint>
     				 
     				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
-    				 title="系评" type="leave" url=":{path}/GradesServlet?method=listGrades&amp;gradingtype=自评">
+    				 title="系评测试" type="leave" url=":{path}/view/long/xgrades/clas_search.jsp">
     				 </db:Barpoint>
     				 
     				  <db:Barpoint icon="glyphicon glyphicon-pencil" 
@@ -83,8 +87,21 @@
     			</db:kids>
     		</db:Barpoint>
     		
+    		<db:Barpoint title="评分信息查询" type="parent" 
+    			icon="glyphicon glyphicon-duplicate" url="##">
+    			<db:kids>
+    				<db:Barpoint icon="glyphicon glyphicon-pencil" 
+    				 title="按学号查询" type="leave" url="##">
+    				 </db:Barpoint>
+    				 
+    				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
+    				 title="按专业班级查询" type="leave" url="##">   	
+    				 </db:Barpoint>   				
+    			</db:kids>
+    		</db:Barpoint>
+    		
     		<db:Barpoint title="个人信息" type="leave" 
-    			icon="glyphicon glyphicon-user" url=":{path}/view/long/test.jsp"></db:Barpoint>
+    			icon="glyphicon glyphicon-user" url=":{path}/UserServlet"></db:Barpoint>
     		
     		<db:Barpoint title="其他" type="parent" 
     			icon="glyphicon glyphicon-plus" url="##">
