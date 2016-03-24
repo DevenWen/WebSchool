@@ -9,9 +9,6 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-
-
-
 /**
  * 通用的dao，自己写的所有的dao都继承此类;
  * 此类定义了2个通用的方法：

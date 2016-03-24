@@ -32,18 +32,38 @@
     		<th>班级</th>
     		<th>操作</th>
     	</tr>
-    	<c:forEach items="${students}" var="stu" varStatus="varSta">
-    		<tr>
-    			<td>${varSta.count }</td>
-    			<td>${stu.stuid}</td>
-    			<td>${stu.name }</td>
-		        <td>${stu.major }</td>
-		        <td>${stu.clas }</td>
-		        <td>
-		        	<a href="${pageContext.request.contextPath }/BGradesServlet?method=listBGrades&gradingtype=班评&stuid=${stu.stuid}&name=${stu.name}&clas=${stu.clas}">评分</a>&nbsp;
-		        </td>
-    		</tr>
-    	</c:forEach>
+    	<c:choose>
+  			<c:when test="${not empty requestScope.pageBean.pageData}">
+		    	<c:forEach items="${requestScope.pageBean.pageData}" var="stu" varStatus="varSta">
+		    		<tr>
+		    			<td>${varSta.count }</td>
+		    			<td>${stu.stuid}</td>
+		    			<td>${stu.name }</td>
+				        <td>${stu.major }</td>
+				        <td>${stu.clas }</td>
+				        <td>
+				        	<a href="${pageContext.request.contextPath }/BGradesServlet?method=listBGrades&gradingtype=班评&stuid=${stu.stuid}&name=${stu.name}&clas=${stu.clas}">评分</a>&nbsp;
+				        </td>
+		    		</tr>
+		    	</c:forEach>
+		    </c:when>
+  			<c:otherwise>
+  				<tr>
+  					<td colspan="6">对不起，没有你要找的数据</td>
+  				</tr>
+  			</c:otherwise>
+  		</c:choose>
+  		
+  		<tr>
+  			<td colspan="6" align="center">
+  				当前${requestScope.pageBean.currentPage }/${requestScope.pageBean.totalPage }页     &nbsp;&nbsp;
+  				
+  				<a href="${pageContext.request.contextPath }/BGradesServlet?method=listStudent&gradingtype=班评&currentPage=1">首页</a>
+  				<a href="${pageContext.request.contextPath }/BGradesServlet?method=listStudent&gradingtype=班评&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
+  				<a href="${pageContext.request.contextPath }/BGradesServlet?method=listStudent&gradingtype=班评&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
+  				<a href="${pageContext.request.contextPath }/BGradesServlet?method=listStudent&gradingtype=班评&currentPage=${requestScope.pageBean.totalPage}">末页</a>
+  			</td>
+  		</tr>
     </table>
 </body>
 </html>

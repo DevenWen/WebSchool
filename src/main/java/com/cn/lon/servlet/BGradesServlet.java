@@ -14,6 +14,7 @@ import com.cn.lon.entity.Student;
 import com.cn.lon.service.IStudentService;
 import com.cn.lon.service.impl.GradesService;
 import com.cn.lon.service.impl.StudentService;
+import com.cn.lon.utils.PageBean;
 import com.cn.lon.utils.UserUtil;
 import com.cn.lon.utils.WebUtil;
 import com.cn.qpm.framework.context.WebSchoolContext;
@@ -234,14 +235,35 @@ public class BGradesServlet extends HttpServlet {
 			String major=UserUtil.getUserMajor(currentUser);
 			String clas=UserUtil.getUserClas(currentUser);
 			
+			//1. 获取“当前页”参数；  (第一次访问当前页为null) 
+			String currPage = request.getParameter("currentPage");
+			// 判断
+			if (currPage == null || "".equals(currPage.trim())){
+				currPage = "1";  	// 第一次访问，设置当前页为1;
+			}
+			// 类型转换
+			int currentPage = Integer.parseInt(currPage);
+			
+			//2. 创建PageBean对象，设置当前页参数； 传入service方法参数
+			PageBean<Student> pageBean=new PageBean<Student>();
+			pageBean.setCurrentPage(currentPage);
+			
+			//3. 调用service  
+			studentService.getAll(pageBean, major, clas);
+			
+			//4. 保存pageBean对象，到request域中
+			request.setAttribute("pageBean", pageBean);
+			
+			//5. 跳转 
+			request.getRequestDispatcher("/view/long/bgrades/student_list.jsp").forward(request, response);
 			//调用方法获取该班的所有学生
-			List<Student > list= studentService.findByMajorAndClas(major, clas);
+		//	List<Student > list= studentService.findByMajorAndClas(major, clas);
 			
 			//2.把结果保存到域对象中
-			request.setAttribute("students",list);
+		//	request.setAttribute("students",list);
 			
 			//3.跳转到jsp页面
-			request.getRequestDispatcher("/view/long/bgrades/student_list.jsp").forward(request, response);
+		//	request.getRequestDispatcher("/view/long/bgrades/student_list.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
