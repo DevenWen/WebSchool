@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"  
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:p="http://www.springframework.org/schema/p"  
     xmlns:context="http://www.springframework.org/schema/context"  
-    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
     xsi:schemaLocation="http://www.springframework.org/schema/beans    
                         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd    
                         http://www.springframework.org/schema/context    
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd    
                         http://www.springframework.org/schema/mvc    
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
      
     <!-- 为SpringUtil注入ApplicationContext -->
 	<bean id="appContext" class="com.cn.qpm.framework.util.SpringUtil" lazy-init="false" />                    
@@ -38,6 +42,23 @@
 	<bean id="executorJob" class="com.cn.qpm.framework.springdynaload.SpringBeanReloadJob" />
 	<!-- XML热加载 end -->
 	
-
+	<!-- AOP的demo 
+	<bean id="securityHandler" class="com.cn.qpm.framework.aop.SecurityHandler"></bean>
+	<aop:config>
+	-->
+		<!-- 指定SecutityHander为aspect
+		<aop:aspect id="securityAspect" ref="securityHandler">-->
+			<!-- 切入点 
+			<aop:pointcut id="securityPointcut" expression="execution(* checkLogin(..))"/>-->
+			<!-- 通知类型 
+			<aop:before method="checkSecurity" pointcut-ref="securityPointcut"/>
+			
+		</aop:aspect>
+		
+	</aop:config>-->
+	
+	<!-- -->
+	<aop:aspectj-autoproxy/>  
+    <bean id="myInterceptor" class="com.cn.qpm.framework.aop.MyInterceptor"/>
 
 </beans>
