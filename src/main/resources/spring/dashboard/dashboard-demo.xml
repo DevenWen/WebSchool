@@ -10,15 +10,15 @@
     
     	<!-- Spring翻译 --> 
     	<db:topkids>
-    		<db:TopNarPoint title="康强的私人网站" url="wwww.i.am.url.com"
+    		<db:TopNarPoint title="张艺凯" url="wwww.i.am.url.com"
     			icon="glyphicon glyphicon-duplicate"></db:TopNarPoint>
     		<db:TopNarPoint title="top导航2" url="www.i.am.url.com"
     			icon="glyphicon glyphicon-duplicate"></db:TopNarPoint>
     	</db:topkids>
     	<db:sidekids> 
-    		<db:Barpoint title="侧导航1" type="leave" 
+    		<db:Barpoint title="录入成绩" type="leave" 
     			icon="glyphicon glyphicon-duplicate active" url=":{path}/longqing.jsp"></db:Barpoint>
-    		<db:Barpoint title="侧导航2" type="parent" 
+    		<db:Barpoint title="查看成绩" type="parent" 
     			icon="glyphicon glyphicon-duplicate" url="##">
     			<db:kids>
     				<db:Barpoint icon="glyphicon glyphicon-duplicate" 
