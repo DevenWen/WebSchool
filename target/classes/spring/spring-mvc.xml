@@ -13,6 +13,7 @@
         
         <!-- 自动扫描包， 使SpringMVC认为包下用了Controller注解的类是控制器 -->
         <context:component-scan base-package="com.cn.qpm.*.controller"></context:component-scan>
+        <context:component-scan base-package="com.cn.lon.controller"></context:component-scan>
         <!-- 避免IE执行AJAX，返回的JSON出现下载文件 -->
         <bean id="mappingJacksonHttpMessageConverter"  
 	        class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  

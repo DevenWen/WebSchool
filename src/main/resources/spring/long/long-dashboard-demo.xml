@@ -61,6 +61,7 @@
     		<db:Barpoint title="综合测评" type="parent" 
     			icon="glyphicon glyphicon-duplicate" url="##">
     			<db:kids>
+    				<!-- 
     				<db:Barpoint icon="glyphicon glyphicon-pencil" 
     				 title="自评" type="leave" url=":{path}/SiXiangServlet?method=listSiXiang&amp;gradingtype=自评">
     				 </db:Barpoint>
@@ -68,7 +69,7 @@
     				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
     				 title="班评" type="leave" url=":{path}/GradeServlet?method=listGrade&amp;gradingtype=自评">   	
     				 </db:Barpoint>
-    				 
+    				  -->
     				 <db:Barpoint icon="glyphicon glyphicon-pencil" 
     				 title="自评测试" type="leave" url=":{path}/GradesServlet?method=listGrades&amp;gradingtype=自评">
     				 </db:Barpoint>
@@ -82,7 +83,7 @@
     				 </db:Barpoint>
     				 
     				  <db:Barpoint icon="glyphicon glyphicon-pencil" 
-    				 title="加扣分录入" type="leave" url="##">
+    				 title="加扣分录入" type="leave" url=":{path}/view/long/add_cut/add_cut_input.jsp">
     				 </db:Barpoint>
     			</db:kids>
     		</db:Barpoint>
