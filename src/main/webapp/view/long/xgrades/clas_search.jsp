@@ -11,7 +11,7 @@
 	<form action="${pageContext.request.contextPath }/XGradesServlet?method=listStudent&gradingtype=系评" method="post">
 		<div align="center">
 			班级：<input type="text" name="clas">
-			<input type="submit" style="width: 80px;height: 30px;font-size: 16px;" value="查询">
+			<input type="submit" style="width: 80px;height: 25px;font-size: 16px;" value="查询">
 		</div>
 	</form>
 </body>

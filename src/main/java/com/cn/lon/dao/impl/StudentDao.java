@@ -45,7 +45,7 @@ public class StudentDao extends BaseDaoUtil implements IStudentDao {
 		//1.2判断设置当前页
 		if(pb.getCurrentPage()<=0){
 			pb.setCurrentPage(1);
-		}else if(pb.getCurrentPage()>pb.getTotalPage()){
+		}else if(pb.getTotalPage()>=1&&pb.getCurrentPage()>pb.getTotalPage()){			
 			pb.setCurrentPage(pb.getTotalPage());
 		}
 		
@@ -72,6 +72,7 @@ public class StudentDao extends BaseDaoUtil implements IStudentDao {
 		
 		Object[] paramsValue = {major,clas};
 		
+	//	List<Student,Grades> sg=super.query(sql, paramsValue, Student.class);
 		List<Student> count = super.query(sql,paramsValue , Student.class);
 	//	return Integer.parseInt(count.toString());
 		return count.size();

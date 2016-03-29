@@ -17,6 +17,9 @@
 	table{
 		border-collapse:collapse;
 	}
+	
+	/*显示鼠标所在的行*/
+	tr:hover{background-color:#CCC}
 </style>  
 
 <!-- 去掉a标签下面的下划线 -->

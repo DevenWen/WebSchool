@@ -15,14 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cn.lon.entity.AddandCut;
 import com.cn.lon.service.IAddAndCutService;
-import com.cn.lon.service.impl.AddAndCutService;
 import com.cn.qpm.framework.util.ExceptionUtil;
 
 /**
  * declaration： 
  *		上传文件controller
- * author wenkangqiang
- * date   2016年3月18日
  */
 @Controller
 @RequestMapping(value="/uploadController")

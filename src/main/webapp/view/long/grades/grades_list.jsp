@@ -18,6 +18,9 @@
 	table{
 		border-collapse:collapse;
 	}
+	
+	/*显示鼠标所在的行*/
+	tr:hover{background-color:#CCC}
 </style>  
 </head>
 <body>

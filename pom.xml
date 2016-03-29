@@ -23,6 +23,13 @@
   
   <dependencies>
   
+  	<!-- 龙青导入的JSON包
+    <dependency>  
+	    <groupId>net.sf.json-lib</groupId>  
+	    <artifactId>json-lib</artifactId>  
+	    <version>2.1</version>  
+	</dependency>
+  	-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -232,7 +239,11 @@
         	<artifactId>commons-logging</artifactId>
         	<version>1.1.3</version>
         </dependency>
-    
+        
+        
+      
+        
+     
   </dependencies>
   <build>
     <finalName>qpm</finalName>

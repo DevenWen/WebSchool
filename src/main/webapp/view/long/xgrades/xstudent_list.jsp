@@ -17,12 +17,23 @@
 	table{
 		border-collapse:collapse;
 	}
+	
+	/*显示鼠标所在的行*/
+	tr:hover{background-color:#CCC}
 </style>  
 
 </head>
 
 <body>
-	<center><h3>系评的同学名单</h3></center>
+	<h3 align="center">查询要系评的专业班级</h3>
+	<form action="${pageContext.request.contextPath }/XGradesServlet?method=listStudent&gradingtype=系评" method="post">
+		<div align="center">
+			班级：<input type="text" name="clas" value="${clas}">
+			<input type="submit" style="width: 80px;height: 25px;font-size: 16px;" value="查询">
+		</div>
+		<br>
+	</form>
+	
 	 <table align="center" border="1" width="700px">
     	<tr>
     		<th>编号</th>
@@ -64,7 +75,7 @@
   				<a href="${pageContext.request.contextPath }/XGradesServlet?method=listStudent&clas=${clas}&gradingtype=系评&currentPage=${requestScope.pageBean.totalPage}">末页</a>
   			</td>
   		</tr>
-  		
+  <!--  	
     	<tr>
     		<td colspan="6">
 	    		<a href="${pageContext.request.contextPath }/view/long/xgrades/clas_search.jsp">
@@ -72,6 +83,7 @@
 	    		</a>
 	    	</td>
     	</tr>
+    -->	
     </table>
 </body>
 </html>
