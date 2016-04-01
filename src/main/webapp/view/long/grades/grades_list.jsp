@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,8 +23,22 @@
 	/*显示鼠标所在的行*/
 	tr:hover{background-color:#CCC}
 </style>  
+
+<!-- 去掉a标签下面的下划线 -->
+<style>a{TEXT-DECORATION:none}</style>
+
+<script type="text/javascript">
+
+	function load(){		
+		var type=document.getElementById("span").innerHTML;		
+		if(type=="hidden"){
+			document.getElementById("tr").style.visibility="hidden";
+		}
+	}
+</script>
+
 </head>
-<body>
+<body onload="load()">
 	<div align="center">
 		学号：<span>${gra.stuid}</span>&nbsp;&nbsp;&nbsp;&nbsp;
 		姓名：<span>${userName}</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -82,13 +97,15 @@
                 <td>${gra.wenti}</td>
             </tr>
             
-            <tr>
+            <tr id="tr">
             	<td align="center" colspan="2"> 
                 	<a href="${pageContext.request.contextPath }/GradesServlet?method=viewUpdate&stuid=${gra.stuid }&gradingtype=${gra.gradingtype }">
                 		<input type="button" style="width: 80px;height: 30px;font-size: 16px;" value="修改" />
-                	</a>
+                	</a>                	
                 </td>
             </tr>
+            <span style="visibility: hidden;" id="span" >${type}</span>
+           
         </table>	
 </body>
 </html>

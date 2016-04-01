@@ -1,8 +1,7 @@
 package com.cn.lon.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +14,7 @@ import com.cn.lon.service.IStudentService;
 import com.cn.lon.service.impl.GradesService;
 import com.cn.lon.service.impl.StudentService;
 import com.cn.lon.utils.PageBean;
+import com.cn.lon.utils.TimeOpenUtils;
 import com.cn.lon.utils.UserUtil;
 import com.cn.lon.utils.WebUtil;
 import com.cn.qpm.framework.context.WebSchoolContext;
@@ -25,6 +25,7 @@ import com.cn.qpm.usermanage.model.LoginUser;
  * c.添加班评信息
  * d.进入班评更新页面
  * e.更新班评信息
+ * f.班评过后显示班评成绩
  * @author Administrator
  *
  */
@@ -37,33 +38,119 @@ public class BGradesServlet extends HttpServlet {
 	private IStudentService studentService=new StudentService();
 	private GradesService gradesService=new GradesService();
 	
-	//获取当前登录用户对象
-//	LoginUser currentUser = WebSchoolContext.getCurrentUser();
-	//通过用户工具类获取当前用户的账号
-//	String bgradingManId = UserUtil.getUserId(currentUser);
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置编码
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		// 获取操作类型
+		// 获取操作类型和评分类型
 		String method = request.getParameter("method");
+		String gradingtype = request.getParameter("gradingtype");
 		
-		if("listStudent".equals(method)){
-			listStudent(request,response);
+		//获取当前时间和开放时间
+		long beginTime = TimeOpenUtils.getBeginTime(gradingtype).getTime();
+		long endTime = TimeOpenUtils.getEndTime(gradingtype).getTime();
+		long date = new Date().getTime();
+		
+		//定义按钮显示类型
+		String type;
+		
+		//判断
+		if(date<beginTime){
+			//还没到班评时间
+			try {
+				request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
 		}
-		else if("listBGrades".equals(method)){
-			listBGrades(request,response);
+		else if(date>beginTime&date<endTime){
+			//班评时间
+			//1.获取当前登录用户对象
+			LoginUser currentUser = WebSchoolContext.getCurrentUser();
+			//2.获取权限
+			String authority = currentUser.getAuthority();
+			//3.判断权限
+			if(!"6".equals(authority)){
+				//其他学生
+				try {
+					request.getRequestDispatcher("/view/long/message/bgtips.jsp").forward(request, response);
+				} catch (ServletException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
+			}
+			
+//班评人员权限未定要修改
+			
+			else if("6".equals(authority)){
+				//班评人员
+				type="show";
+			
+				if("listStudent".equals(method)){
+					listStudent(request,response);
+				}
+				else if("listBGrades".equals(method)){
+					listBGrades(request,response);
+				}
+				else if("addBGrades".equals(method)){
+					addBGrades(request,response);
+				}
+				else if("viewUpdate".equals(method)){
+					viewUpdate(request,response);
+				}
+				else if("updateBGrades".equals(method)){
+					updateBGrades(request,response);
+				}
+			}
 		}
-		else if("addBGrades".equals(method)){
-			addBGrades(request,response);
+		else if(date>endTime){
+			//过了班评时间
+			type="hidden";
+			
+			if("listStudent".equals(method)){
+				listBGradesLater(request,response,type);
+			}
+			
 		}
-		else if("viewUpdate".equals(method)){
-			viewUpdate(request,response);
-		}
-		else if("updateBGrades".equals(method)){
-			updateBGrades(request,response);
+	}
+
+	//f.班评过后显示班评成绩
+	private void listBGradesLater(HttpServletRequest request,
+			HttpServletResponse response, String type) {
+		
+		try {
+			//1.获取当前登录用户对象
+			LoginUser currentUser = WebSchoolContext.getCurrentUser();		
+			//通过用户工具类获取当前用户的账号
+			String gradingManId = UserUtil.getUserId(currentUser);
+			//被评分人就是当前用户
+			String stuid=gradingManId;
+			
+			//2.获取当前用户的姓名，班级并保存
+			String userName = UserUtil.getUserName(currentUser);
+			String userClas = UserUtil.getUserClas(currentUser);
+			request.setAttribute("zname", userName);
+			request.setAttribute("zclas", userClas);
+			request.setAttribute("zstuid", stuid);
+			
+			//3.查询自评成绩对象
+			Grades zgra=gradesService.findById(stuid, "自评", gradingManId);
+			//查询班评平均成绩对象
+			Grades bgra=gradesService.findAverageGrades(stuid, "班评");
+			
+			//4.保存到域对象中
+			request.setAttribute("zgra",zgra);
+			request.setAttribute("bgra",bgra);
+			request.setAttribute("type",type);
+			
+			//5.跳转
+			request.getRequestDispatcher("/view/long/bgrades/bgrades_list.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -177,11 +264,6 @@ public class BGradesServlet extends HttpServlet {
 			//1.获取评分类型
 			String gradingtype=request.getParameter("gradingtype");
 			
-			//获取当前登录用户对象
-		//	LoginUser currentUser = WebSchoolContext.getCurrentUser();		
-			//通过用户工具类获取当前用户的账号
-		//	String bgradingManId = UserUtil.getUserId(currentUser);
-			
 			//获取被评分人的学号，姓名，班级
 			String zstuid=request.getParameter("stuid");
 			String zname=request.getParameter("name");
@@ -212,7 +294,7 @@ public class BGradesServlet extends HttpServlet {
 					request.getRequestDispatcher("/view/long/bgrades/bgrades_add.jsp").forward(request, response);
 				}else{
 					//3.把对象的信息保存到域中
-					request.setAttribute("bgra", bgra);
+					request.setAttribute("bgra", bgra);	
 					
 					//4.跳转
 					request.getRequestDispatcher("/view/long/bgrades/bgrades_list.jsp").forward(request, response);

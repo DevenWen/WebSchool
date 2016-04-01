@@ -1,6 +1,7 @@
 package com.cn.lon.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cn.lon.entity.Grades;
 import com.cn.lon.service.impl.GradesService;
+import com.cn.lon.utils.TimeOpenUtils;
 import com.cn.lon.utils.UserUtil;
 import com.cn.lon.utils.WebUtil;
 import com.cn.qpm.framework.context.WebSchoolContext;
@@ -26,7 +28,8 @@ import com.cn.qpm.usermanage.model.LoginUser;
  *
  */
 @WebServlet("/GradesServlet")
-public class GradesServlet extends HttpServlet {
+public class GradesServlet extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
        
 	//实现service
@@ -42,30 +45,58 @@ public class GradesServlet extends HttpServlet {
 	//通过用户工具类获取当前用户的账号
 //	String gradingManId = UserUtil.getUserId(currentUser);
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		// 设置编码
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		// 获取操作类型
+		// 获取操作类型和评分类型
 		String method = request.getParameter("method");
+		String gradingtype = request.getParameter("gradingtype");
 		
-		if("addGrades".equals(method)){
-			addGrades(request,response);
-		}
-		else if("listGrades".equals(method)){
-			listGrades(request,response);
-		}
-		else if("viewUpdate".equals(method)){
-			viewUpdate(request,response);
-		}
-		else if("updateGrades".equals(method)){
-			updateGrades(request,response);
-		}
+		//获取当前时间和开放时间
+		long beginTime = TimeOpenUtils.getBeginTime(gradingtype).getTime();
+		long endTime = TimeOpenUtils.getEndTime(gradingtype).getTime();
+		long date = new Date().getTime();
 		
+		//定义按钮显示类型
+		String type;
 		
-		
+		//判断
+		if(date<beginTime){
+			//还没到自评时间
+			try {
+				request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}
+		else if(date>beginTime&date<endTime){	
+			//自评时间
+			type="show";
+			
+			if("addGrades".equals(method)){
+				addGrades(request,response);
+			}
+			else if("listGrades".equals(method)){
+				listGrades(request,response,type);
+			}
+			else if("viewUpdate".equals(method)){
+				viewUpdate(request,response);
+			}
+			else if("updateGrades".equals(method)){
+				updateGrades(request,response);
+			}
+		}
+		else if(date>endTime){
+			//过了自评时间
+			type="hidden";
+			if("listGrades".equals(method)){
+				listGrades(request,response,type);
+			}
+		}		
 	}
 
 	//d.更新评分信息
@@ -132,7 +163,7 @@ public class GradesServlet extends HttpServlet {
 
 	//b.显示评分信息
 	private void listGrades(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response,String type) {
 		
 		try {
 			//1.获取评分类型
@@ -168,6 +199,8 @@ public class GradesServlet extends HttpServlet {
 				}else{
 					//3.把对象的信息保存到域中
 					request.setAttribute("gra", gra);
+					//把按钮类型保存到域中
+					request.setAttribute("type", type);
 					
 					//4.跳转
 					request.getRequestDispatcher("/view/long/grades/grades_list.jsp").forward(request, response);

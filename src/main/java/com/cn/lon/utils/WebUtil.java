@@ -1,8 +1,17 @@
 package com.cn.lon.utils;
 
+
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.Converter;
+import org.apache.commons.beanutils.converters.SqlDateConverter;
+import org.apache.commons.beanutils.locale.converters.DateLocaleConverter;
 
 public class WebUtil {
 	/*第一种
@@ -38,9 +47,38 @@ public class WebUtil {
 	 */
 	public static <T> T copyToBean(HttpServletRequest request, Class<T> clazz) {
 		try {
-			// （注册日期类型转换器）
+		//	ConvertUtils.register(new DateLocaleConverter(), Date.class);
 			// 创建对象
 			T t = clazz.newInstance();
+			// （注册日期类型转换器）
+			// 注册日期类型转换器：2， 使用组件提供的转换器工具类
+		//		ConvertUtils.register(new DateLocaleConverter(), Date.class);
+		//	ConvertUtils.register(new SqlDateConverter(null), Date.class);
+			
+	/*		ConvertUtils.register(new Converter() {
+				// 转换的内部实现方法，需要重写
+				@Override
+				public Object convert(Class type, Object value) {
+					
+					// 判断
+					if (type != Date.class) {
+						return null;
+					}
+					if (value == null || "".equals(value.toString().trim())) {
+						return null;
+					}
+					
+					
+					try {
+						// 字符串转换为日期
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						return sdf.parse(value.toString());
+					} catch (Exception e) {
+						throw new RuntimeException(e);
+					}
+				}
+			},Date.class);
+	*/		
 			BeanUtils.populate(t, request.getParameterMap());
 			return t;
 		} catch (Exception e) {

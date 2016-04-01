@@ -7,22 +7,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.cn.qpm.framework.context.WebSchoolContext;
-import com.cn.qpm.framework.dashboard.model.DashboardEntry;
-import com.cn.qpm.framework.dashboard.model.DashboardFactory;
 import com.cn.qpm.framework.util.UserUtil;
 import com.cn.qpm.usermanage.dao.LoginUserMapper;
 import com.cn.qpm.usermanage.model.LoginUser;
 import com.cn.qpm.usermanage.service.IUserService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 
-/**
- * 
- * author wenkangqiang
- * date   2016年3月1日
- *
- */
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 	

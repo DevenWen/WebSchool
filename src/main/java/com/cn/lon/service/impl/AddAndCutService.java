@@ -5,7 +5,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.cn.lon.entity.AddandCut;
-import com.cn.lon.entity.User;
 import com.cn.lon.service.IAddAndCutService;
 import com.cn.qpm.framework.context.WebSchoolContext;
 import com.cn.qpm.framework.util.UserUtil;

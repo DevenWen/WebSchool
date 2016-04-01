@@ -6,8 +6,6 @@ import com.cn.qpm.usermanage.model.LoginUser;
 /**
  * declaration： 
  *
- * author wenkangqiang
- * date   2016年3月3日
  */
 public interface IUserService {
 	

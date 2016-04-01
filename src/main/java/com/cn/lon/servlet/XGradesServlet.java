@@ -1,6 +1,7 @@
 package com.cn.lon.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import com.cn.lon.service.IStudentService;
 import com.cn.lon.service.impl.GradesService;
 import com.cn.lon.service.impl.StudentService;
 import com.cn.lon.utils.PageBean;
+import com.cn.lon.utils.TimeOpenUtils;
 import com.cn.lon.utils.UserUtil;
 import com.cn.lon.utils.WebUtil;
 import com.cn.qpm.framework.context.WebSchoolContext;
@@ -36,36 +38,127 @@ public class XGradesServlet extends HttpServlet {
 	//实现service
 	private IStudentService studentService=new StudentService();
 	private GradesService gradesService=new GradesService();
-	
-	//获取当前登录用户对象
-//	LoginUser currentUser = WebSchoolContext.getCurrentUser();
-	//通过用户工具类获取当前用户的账号
-//	String xgradingManId = UserUtil.getUserId(currentUser);
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置编码
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		// 获取操作类型
+		// 获取操作类型和评分类型
 		String method = request.getParameter("method");
+		String gradingtype = request.getParameter("gradingtype");
+		
+		//获取当前时间和开放时间
+		long beginTime = TimeOpenUtils.getBeginTime(gradingtype).getTime();
+		long endTime = TimeOpenUtils.getEndTime(gradingtype).getTime();
+		long date = new Date().getTime();
+		
+		//定义按钮显示类型
+		String type;
 		
 		//判断
-		if("listStudent".equals(method)){
-			listStudent(request,response);
+		if(date<beginTime){
+			//还没到系评时间
+			try {
+				request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
 		}
-		else if("listXGrades".equals(method)){
-			listXGrades(request,response);
+		else if(date>beginTime&date<endTime){
+			//系评时间
+			//1.获取当前登录用户对象
+			LoginUser currentUser = WebSchoolContext.getCurrentUser();
+			
+			//2.获取权限
+			String authority = currentUser.getAuthority();
+			
+			//3.判断权限
+			if(!"3".equals(authority)){
+				//其他学生
+				try {
+					request.getRequestDispatcher("/view/long/message/xgtips.jsp").forward(request, response);
+				} catch (ServletException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
+			}
+			else if("3".equals(authority)){
+				//系评人员
+			//	type="show";
+				
+				//判断
+				if("findClas".equals(method)){
+					findClas(request,response);
+				}
+				if("listStudent".equals(method)){
+					listStudent(request,response);
+				}
+				else if("listXGrades".equals(method)){
+					listXGrades(request,response);
+				}
+				else if("addXGrades".equals(method)){
+					addXGrades(request,response);
+				}
+				else if("viewUpdate".equals(method)){
+					viewUpdate(request,response);
+				}
+				else if("updateXGrades".equals(method)){
+					updateXGrades(request,response);
+				}
+			}
+						
 		}
-		else if("addXGrades".equals(method)){
-			addXGrades(request,response);
+		else if(date>endTime){
+			//过了系评时间			
+			type="hidden";
+			
+			if("findClas".equals(method)){
+				listXGradesLater(request,response,type);
+			}
 		}
-		else if("viewUpdate".equals(method)){
-			viewUpdate(request,response);
+		
+	}
+
+	//f.系评过后显示系评成绩
+	private void listXGradesLater(HttpServletRequest request,
+			HttpServletResponse response, String type) {
+		try {
+			//1.获取当前登录用户对象
+			LoginUser currentUser = WebSchoolContext.getCurrentUser();		
+			//通过用户工具类获取当前用户的账号
+			String gradingManId = UserUtil.getUserId(currentUser);
+			//被评分人就是当前用户
+			String stuid=gradingManId;
+			
+			//2.获取当前用户的姓名，班级并保存
+			String userName = UserUtil.getUserName(currentUser);
+			String userClas = UserUtil.getUserClas(currentUser);
+			request.setAttribute("zname", userName);
+			request.setAttribute("zclas", userClas);
+			request.setAttribute("zstuid", stuid);
+			
+			//3.查询自评成绩对象
+			Grades zgra=gradesService.findById(stuid, "自评", gradingManId);
+			//查询班评平均成绩对象
+			Grades bgra=gradesService.findAverageGrades(stuid, "班评");
+			//查询系评平均成绩对象
+			Grades xgra=gradesService.findAverageGrades(stuid, "系评");
+			
+			//4.保存到域对象中
+			request.setAttribute("zgra",zgra);
+			request.setAttribute("bgra",bgra);
+			request.setAttribute("xgra",xgra);
+			request.setAttribute("type",type);
+			
+			//5.跳转
+			request.getRequestDispatcher("/view/long/xgrades/xgrades_list.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		else if("updateXGrades".equals(method)){
-			updateXGrades(request,response);
-		}
+		
 	}
 
 	//e.更新系评信息
@@ -274,6 +367,16 @@ public class XGradesServlet extends HttpServlet {
 		
 	}
 
+	//进入班级输入页面
+	private void findClas(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			request.getRequestDispatcher("/view/long/xgrades/clas_search.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

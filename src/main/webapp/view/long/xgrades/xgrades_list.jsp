@@ -54,9 +54,20 @@
 		message.innerHTML="";
 	}
 </script>
+
+<script type="text/javascript">
+
+	function load(){		
+		var type=document.getElementById("span").innerHTML;		
+		if(type=="hidden"){
+			document.getElementById("tr").style.visibility="hidden";
+		}
+	}
+</script>
+
 </head>
 
-<body>
+<body onload="load()">
 	<div align="center">
 		学号：<span>${zstuid}</span>&nbsp;&nbsp;&nbsp;&nbsp;
 		姓名：<span>${zname}</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -139,7 +150,7 @@
                 <td>${xgra.wenti}</td>
             </tr>
             
-            <tr>
+            <tr id="tr">
             	<td align="center" colspan="4"> 
                 	<a href="${pageContext.request.contextPath }/XGradesServlet?method=viewUpdate&stuid=${zstuid}&gradingtype=${xgra.gradingtype}&name=${zname}&clas=${zclas}">
                 		<input type="button" style="width: 80px;height: 30px;font-size: 16px;" value="修改" />
@@ -149,6 +160,9 @@
                 	</a>
                 </td>
             </tr>
+            
+            <span style="visibility: hidden;" id="span" >${type}</span>
+            
         </table>	
 </body>
 </html>

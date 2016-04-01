@@ -13,19 +13,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.cn.lon.entity.ZHGrades;
 import com.cn.lon.service.impl.ZHGradesService;
 
-/**
- * Servlet implementation class SearchServlet_ajax
- */
+
 @WebServlet("/SearchServlet_ajax")
 public class SearchServlet_ajax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public SearchServlet_ajax() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     //实现service
@@ -55,9 +50,7 @@ public class SearchServlet_ajax extends HttpServlet {
 				
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

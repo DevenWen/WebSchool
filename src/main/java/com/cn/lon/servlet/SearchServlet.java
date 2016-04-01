@@ -1,6 +1,8 @@
 package com.cn.lon.servlet;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cn.lon.entity.ZHGrades;
 import com.cn.lon.service.impl.ZHGradesService;
 import com.cn.lon.utils.PageBean;
+import com.cn.lon.utils.TimeOpenUtils;
 
 
 @WebServlet("/SearchServlet")
@@ -17,8 +20,7 @@ public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public SearchServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+        super(); 
     }
     
     //实现service
@@ -32,27 +34,40 @@ public class SearchServlet extends HttpServlet {
 		// 获取操作类型
 		String method = request.getParameter("method");
 		
-		if("listByIdFirst".equals(method)){
-			listByIdFirst(request,response);
-		}
-		else if("listById".equals(method)){
-			listById(request,response);
-		}
-		else if("listByIdFirst".equals(method)){
-			listByIdFirst(request,response);
-		}
-		else if("listByMajorOrClasFirst".equals(method)){
-			listByMajorOrClasFirst(request,response);
-		}
-		else if("listByMajorOrClas".equals(method)){
-			listByMajorOrClas(request,response);
-		}
+		//获取当前时间和开放时间
+		long endTime = TimeOpenUtils.getEndTime("系评").getTime();
+		long date = new Date().getTime();
 		
-		
+		//判断
+		if(date>endTime){
+			//过了系评时间
+			if("listByIdFirst".equals(method)){
+				listByIdFirst(request,response);
+			}
+			else if("listById".equals(method)){
+				listById(request,response);
+			}
+			else if("listByMajorOrClasFirst".equals(method)){
+				listByMajorOrClasFirst(request,response);
+			}
+			else if("listByMajorOrClas".equals(method)){
+				listByMajorOrClas(request,response);
+			}
+		}
+		else{
+			//系评前
+			try {
+				request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}
+	
 	}
 
 	
-
+	//通过专业或学号进行模糊查询首页
 	private void listByMajorOrClasFirst(HttpServletRequest request,
 			HttpServletResponse response) {
 		try {
@@ -60,8 +75,7 @@ public class SearchServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}
-		
+		}		
 	}
 
 	//通过专业或学号进行模糊查询
@@ -114,6 +128,7 @@ public class SearchServlet extends HttpServlet {
 		
 	}
 
+	//通过学号查询首页
 	private void listByIdFirst(HttpServletRequest request,
 			HttpServletResponse response) {
 		try {
@@ -137,6 +152,7 @@ public class SearchServlet extends HttpServlet {
 			
 			//3.把对象保存到域中
 			request.setAttribute("zg", zg);
+			request.setAttribute("stuid", stuid);
 			
 			//4.跳转页面
 			request.getRequestDispatcher("/view/long/searchgrades/id_search.jsp").forward(request, response);
