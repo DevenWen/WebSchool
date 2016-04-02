@@ -37,6 +37,19 @@
       <scope>test</scope>
     </dependency>
     
+    <!-- aspectj包 用于AOP切面编程 -->
+    <dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.8.6</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+		<version>1.8.6</version>
+	</dependency>
+    
     <!-- apache commons 的lang工具包 -->
     <dependency>
 		<groupId>commons-lang</groupId>

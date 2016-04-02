@@ -6,7 +6,7 @@
 <%@page import="com.cn.qpm.framework.dashboard.model.DashboardEntry"%>
 <%@page import="com.cn.qpm.usermanage.model.LoginUser"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="qpm" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="w" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
@@ -71,10 +71,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </ul>
         
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="#">欢迎你，<%=user.getName() %></a></li>
+            
+            
+            <!-- a调用一个js方法，ajax登出系统 -->
+            <li><a href="javascript:logout();">退出系统</a></li>
           </ul>
         </div>
       </div>
@@ -105,5 +106,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
   
   <script src="<%=path %>/js/dashborad.js"></script>
+  <script type="text/javascript">
+  	
+  	//定义注销的ajax函数
+  	function logout(){
+  		$.ajax({
+				type : "POST",
+				url : ctx + '/user/logout.action',
+				success : function(data) {
+							debugger;
+							var result = eval('('+data+')');
+							if (result = result.result){
+								alert("注销成功");
+							}
+							location.href = ctx + "/view/login.jsp";
+					}
+		});
+  	}
+  	
+  </script>
   
 </html>
