@@ -19,4 +19,10 @@ public class LoginUserService implements ILoginUserService {
 
 	}
 
+	@Override
+	public LoginUser findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return loginUserDao.findByEmail(email);
+	}
+
 }

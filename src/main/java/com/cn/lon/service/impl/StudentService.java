@@ -24,8 +24,14 @@ public class StudentService implements IStudentService {
 	public List<Student> findByMajorAndClas(String major, String clas) {
 		return studentDao.findByMajorAndClas(major, clas);
 	}
+	
+	@Override
+	public Student findByStuid(String stuid) {
+		
+		return studentDao.findByStuid(stuid);
+	}
 
-	/***分页查询数据*****/
+	/***根据专业和班机分页查询数据*****/
 	public void getAll(PageBean<Student> pb, String major, String clas) {
 		try {
 			studentDao.getAll(pb, major, clas);
@@ -35,5 +41,18 @@ public class StudentService implements IStudentService {
 		}
 		
 	}
+
+	/***根据学号模糊分页查询数据*****/
+	@Override
+	public void getAllByStuid(PageBean<Student> pb, String stuid) {
+		try {
+			studentDao.getAllByStuid(pb, stuid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	
 
 }
