@@ -73,20 +73,8 @@ public class BGradesServlet extends HttpServlet {
 			//2.获取权限
 			String authority = currentUser.getAuthority();
 			//3.判断权限
-			if(!"6".equals(authority)){
-				//其他学生
-				try {
-					request.getRequestDispatcher("/view/long/message/bgtips.jsp").forward(request, response);
-				} catch (ServletException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
-			}
-			
-//班评人员权限未定要修改
-			
-			else if("6".equals(authority)){
-				//班评人员
+			if("6".equals(authority)||"5".equals(authority)){
+				//班评人员或者班长
 				type="show";
 			
 				if("listStudent".equals(method)){
@@ -103,6 +91,15 @@ public class BGradesServlet extends HttpServlet {
 				}
 				else if("updateBGrades".equals(method)){
 					updateBGrades(request,response);
+				}
+			}
+			else{
+				//其他学生
+				try {
+					request.getRequestDispatcher("/view/long/message/bgtips.jsp").forward(request, response);
+				} catch (ServletException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 			}
 		}

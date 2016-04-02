@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cn.lon.entity.Grades;
 import com.cn.lon.entity.Student;
+import com.cn.lon.service.IGradesService;
 import com.cn.lon.service.IStudentService;
 import com.cn.lon.service.impl.GradesService;
 import com.cn.lon.service.impl.StudentService;
@@ -37,7 +38,7 @@ public class XGradesServlet extends HttpServlet {
        
 	//实现service
 	private IStudentService studentService=new StudentService();
-	private GradesService gradesService=new GradesService();
+	private IGradesService gradesService=new GradesService();
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置编码

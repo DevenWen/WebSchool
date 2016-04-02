@@ -29,8 +29,17 @@ public class StudentDao extends BaseDaoUtil implements IStudentDao {
 		
 		List<Student> list = super.query(sql,paramsValue , Student.class);
 		return list;
+	}	
+	
+	@Override
+	public Student findByStuid(String stuid) {
+		String sql="select * from student where stuid=?";
+		
+		Object[] paramsValue = {stuid};
+		
+		List<Student> list = super.query(sql,paramsValue , Student.class);
+		return (list!=null&&list.size()>0) ? list.get(0) : null;
 	}
-
 	
 	
 	/***分页查询数据*****/
@@ -77,5 +86,50 @@ public class StudentDao extends BaseDaoUtil implements IStudentDao {
 	//	return Integer.parseInt(count.toString());
 		return count.size();
 	}
+
+	//通过学号模糊查询学生
+	@Override
+	public void getAllByStuid(PageBean<Student> pb, String stuid) {
+		//1.封装好pb对象
+		//1.1查询总记录书，并设置到pb对象中
+		int totalCount=this.getTotalCountByStuid(stuid);
+		pb.setTotalCount(totalCount);
+		
+		//1.2判断设置当前页
+		if(pb.getCurrentPage()<=0){
+			pb.setCurrentPage(1);
+		}else if(pb.getTotalPage()>=1&&pb.getCurrentPage()>pb.getTotalPage()){			
+			pb.setCurrentPage(pb.getTotalPage());
+		}
+		
+		//1.3获取当前页： 计算查询的起始行、返回的行数
+		int currentPage=pb.getCurrentPage();
+		int index=(currentPage-1 )*pb.getPageCount();
+		int count=pb.getPageCount();
+		
+		
+		//2.分页查询数据;  把查询到的数据设置到pb对象中
+		String sql="select * from student where stuid like '%' ? '%' limit ?,?";
+		
+		Object[] paramsValue = {stuid,index,count};
+		// 根据当前页，查询当前页数据(一页数据)
+		List<Student> pageData = super.query(sql,paramsValue , Student.class);
+	
+		// 设置到pb对象中
+		pb.setPageData(pageData);		
+	}
+
+	@Override
+	public int getTotalCountByStuid(String stuid) {
+		String sql="select * from student where stuid like '%' ? '%'";
+		
+		Object[] paramsValue = {stuid};
+		
+		List<Student> count = super.query(sql,paramsValue , Student.class);
+		
+		return count.size();
+	}
+
+	
 
 }
