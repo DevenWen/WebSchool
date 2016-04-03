@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>公告</title>
+<title>密码更新成功</title>
 </head>
 <body>
-
+<h2>密码更新成功</h2>
 </body>
 </html>

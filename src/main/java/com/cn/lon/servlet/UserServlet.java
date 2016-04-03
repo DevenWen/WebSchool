@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cn.lon.entity.Student;
+import com.cn.lon.entity.Teacher;
 import com.cn.lon.service.IStudentService;
+import com.cn.lon.service.ITeacherService;
 import com.cn.lon.service.impl.StudentService;
+import com.cn.lon.service.impl.TeacherService;
 import com.cn.qpm.framework.context.WebSchoolContext;
 import com.cn.qpm.usermanage.model.LoginUser;
 
@@ -20,6 +23,7 @@ public class UserServlet extends HttpServlet {
        
 	//实现service
 	private IStudentService studentService=new StudentService();
+	private ITeacherService teacherService=new TeacherService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置编码
@@ -35,11 +39,32 @@ public class UserServlet extends HttpServlet {
 		if(Integer.parseInt(currentUser.getAuthority())>1){
 			//该用户是学生
 			listStudent(request,response,email);
+		}else{
+			//该用户是教职工
+			listTeacher(request,response,email);
 		}
 		
 	}
 
-	
+	//显示教职工个人信息
+	private void listTeacher(HttpServletRequest request,
+			HttpServletResponse response, String email) {
+		try {
+			//1.通过email查找获取教职工对象
+			Teacher teacher= teacherService.findByEmail(email);
+			
+			//2.把它保存到域中
+			request.setAttribute("teacher", teacher);
+			
+			//3.跳转
+			request.getRequestDispatcher("/view/long/userInfors/teacherInfor.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	//显示学生个人信息
 	private void listStudent(HttpServletRequest request,
 			HttpServletResponse response, String email) {
 		try {

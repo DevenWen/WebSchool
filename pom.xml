@@ -23,6 +23,8 @@
   
   <dependencies>
   
+  
+  
   	<!-- 龙青导入的JSON包
     <dependency>  
 	    <groupId>net.sf.json-lib</groupId>  
@@ -37,13 +39,13 @@
       <scope>test</scope>
     </dependency>
     
-    <!-- aspectj包 用于AOP切面编程 -->
+    <!-- aspectj包 用于AOP切面编程  
     <dependency>
 		<groupId>org.aspectj</groupId>
 		<artifactId>aspectjweaver</artifactId>
 		<version>1.8.6</version>
 	</dependency>
-	
+	-->
 	<dependency>
 		<groupId>org.aspectj</groupId>
 		<artifactId>aspectjrt</artifactId>
