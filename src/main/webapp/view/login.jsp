@@ -22,7 +22,7 @@
   	<div class="container">
 
       <form class="form-signin" action="${ctx }/user/login.do" method="post">
-        <h2 class="form-signin-heading" style="color:white">Please sign in</h2>
+   		<h2 class="form-signin-heading" style="color:white;">请输入</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -32,7 +32,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
       </form>
 
     </div> <!-- /container -->
@@ -44,7 +44,7 @@
   	/*Login Page CSS设置*/
   	
   	body {
-  	  background: url('${ctx }/img/back.jpg')no-repeat center fixed;
+  	  background: url('${ctx }/img/registerback.jpg') no-repeat center fixed;
 	  /*
 	  padding-top: 40px;
 	  padding-bottom: 40px;

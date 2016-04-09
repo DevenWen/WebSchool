@@ -2,6 +2,7 @@ package com.cn.lon.servlet;
 
 import java.io.IOException;
 import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -245,8 +246,12 @@ public class BGradesServlet extends HttpServlet {
 			//执行添加方法
 			gradesService.addGrades(bgrades);
 			
+			//获取被评分人的基本信息
+			String zname = request.getParameter("name");
+			String zclas = request.getParameter("clas");
+			
 			//跳转
-			request.getRequestDispatcher("/BGradesServlet?method=listBGrades&stuid="+zstuid+"&gradingtype="+gradingtype).forward(request, response);
+			request.getRequestDispatcher("/BGradesServlet?method=listBGrades&stuid="+zstuid+"&name="+zname+"&clas="+zclas+"&gradingtype="+gradingtype).forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

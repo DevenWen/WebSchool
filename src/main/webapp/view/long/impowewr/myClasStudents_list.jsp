@@ -46,7 +46,7 @@
 				        <td>${stu.major }</td>
 				        <td>${stu.clas }</td>
 				        <td>
-				        	<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudent&stuid=${stu.stuid}">授权</a>&nbsp;
+				        	<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudent&stuid=${stu.stuid}&man=student">授权</a>&nbsp;
 				        </td>
 		    		</tr>
 		    	</c:forEach>
@@ -62,10 +62,10 @@
   			<td colspan="6" align="center">
   				当前${requestScope.pageBean.currentPage }/${requestScope.pageBean.totalPage }页     &nbsp;&nbsp;
   				
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&currentPage=1">首页</a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&currentPage=${requestScope.pageBean.totalPage}">末页</a>
+  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&man=student&currentPage=1">首页</a>
+  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&man=student&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
+  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&man=student&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
+  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listMyClasStudents&man=student&currentPage=${requestScope.pageBean.totalPage}">末页</a>
   			</td>
   		</tr>
     </table>

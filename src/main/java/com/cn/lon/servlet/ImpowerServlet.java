@@ -56,57 +56,68 @@ public class ImpowerServlet extends HttpServlet {
 		
 		// 获取操作类型和评分类型
 		String method = request.getParameter("method");
+		String man = request.getParameter("man");
 				
 		//1.班长授予普通学生有班评学生权限在班评结束前
-		if(date<endTimeBP){
-			//班长授权班评学生
-			if("listMyClasStudents".equals(method)){
-				listMyClasStudents(request,response);
-			}
-			else if("listMyClasStudent".equals(method)){
-				listMyClasStudent(request,response);
-			}
-			else if("impowerToBpstu".equals(method)){
-				impowerToBpstu(request,response);
-			}
-			else{
+		if("student".equals(man)){	
+			if(date<endTimeBP){
+				//班长授权班评学生
+				if("listMyClasStudents".equals(method)){
+					listMyClasStudents(request,response);
+				}
+				else if("listMyClasStudent".equals(method)){
+					listMyClasStudent(request,response);
+				}
+				else if("impowerToBpstu".equals(method)){
+					impowerToBpstu(request,response);
+				}
+				else{
+					request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+				}
+			}else{
 				request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
 			}
 		}
 		//2.老师授予普通学生有班长权限必须在班评时间开放前
-		else if(date<beginTimeBP){
-			if("findStuid".equals(method)){
-				findStuid(request,response);
+		if("teacher".equals(man)){
+			if(date<beginTimeBP){
+				if("findStuid".equals(method)){
+					findStuid(request,response);
+				}
+				else if("listStudents".equals(method)){
+					listStudents(request,response);
+				}
+				else if("listStudent".equals(method)){
+					listStudent(request,response);
+				}
+				else if("impowerToBz".equals(method)){
+					impowerToBz(request,response);
+				}
+				else{
+					request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+				}
 			}
-			else if("listStudents".equals(method)){
-				listStudents(request,response);
-			}
-			else if("listStudent".equals(method)){
-				listStudent(request,response);
-			}
-			else if("impowerToBz".equals(method)){
-				impowerToBz(request,response);
+			//3.老师授予学生有系评学生权限必须在班评结束后，系评结束前
+			else if(date>beginTimeBP&date<endTimeXP){
+				if("findStuid".equals(method)){
+					findStuid(request,response);
+				}
+				else if("listStudents".equals(method)){
+					listStudents(request,response);
+				}
+				else if("listStudent".equals(method)){
+					listStudent(request,response);
+				}
+				else if("impowerToXpstu".equals(method)){
+					impowerToXpstu(request,response);
+				}
+				else{
+					request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+				}
 			}
 			else{
 				request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
-			}
-		}
-		//3.老师授予学生有系评学生权限必须在班评结束后，系评结束前
-		else if(date>beginTimeBP&date<endTimeXP){
-			if("findStuid".equals(method)){
-				findStuid(request,response);
-			}
-			else if("listStudents".equals(method)){
-				listStudents(request,response);
-			}
-			else if("listStudent".equals(method)){
-				listStudent(request,response);
-			}
-			else if("impowerToXpstu".equals(method)){
-				impowerToXpstu(request,response);
-			}
-			else{
-				request.getRequestDispatcher("/view/long/message/tips.jsp").forward(request, response);
+				
 			}
 		}
 

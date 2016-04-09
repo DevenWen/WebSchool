@@ -1,9 +1,12 @@
 package com.cn.lon.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.cn.lon.dao.impl.AddandCutDao;
 import com.cn.lon.entity.AddandCut;
 import com.cn.lon.service.IAddAndCutService;
 import com.cn.qpm.framework.context.WebSchoolContext;
@@ -21,6 +24,7 @@ public class AddAndCutService implements IAddAndCutService {
 	@Resource
 	private AddandCutMapper addAndCutMapper;
 	
+	private AddandCutDao addandCut=new AddandCutDao();
 	/**
 	 * 通过传入的model保存一个加扣分记录
 	 */
@@ -34,6 +38,27 @@ public class AddAndCutService implements IAddAndCutService {
 		model.setStuid(com.cn.lon.utils.UserUtil.getUserId(user));
 		
 		return this.addAndCutMapper.insertSelective(model);
+	}
+
+	@Override
+	public void addAddandCut(AddandCut addandcut) {
+		addandCut.addAddandCut(addandcut);
+	}
+
+	@Override
+	public void updateAddandCut(AddandCut addandcut) {
+		addandCut.updateAddandCut(addandcut);
+		
+	}
+
+	@Override
+	public List<AddandCut> findByStuid(String stuid) {
+		return addandCut.findByStuid(stuid);
+	}
+
+	@Override
+	public AddandCut findById(Integer id) {
+		return addandCut.findById(id);
 	}
 
 }

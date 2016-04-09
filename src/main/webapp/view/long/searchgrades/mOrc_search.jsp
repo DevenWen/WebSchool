@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,10 +55,18 @@
 		    			<td>${stu.name }</td>
 				        <td>${stu.major }</td>
 				        <td>${stu.clas }</td>
-				        <td>${stu.sx_score}</td>
-				        <td>${stu.xy_score}</td>
-				        <td>${stu.wt_score}</td>
-				        <td>${stu.zh_score}</td>
+				        <td>
+				        	<fmt:formatNumber type="number" value="${stu.sx_score}" maxFractionDigits="4"/>	
+				        </td>
+				        <td>
+				        	<fmt:formatNumber type="number" value="${stu.xy_score}" maxFractionDigits="4"/>	
+				        </td>
+				        <td>
+				        	<fmt:formatNumber type="number" value="${stu.wt_score}" maxFractionDigits="4"/>	
+				        </td>
+				        <td>
+				        	<fmt:formatNumber type="number" value="${stu.zh_score}" maxFractionDigits="4"/>	
+				        </td>
 		    		</tr>
 		    	</c:forEach>
 		     </c:when>

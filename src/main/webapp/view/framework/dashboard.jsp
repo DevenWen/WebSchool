@@ -36,6 +36,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- 框架CSS  -->
 	<link rel="stylesheet" type="text/css" href="<%=path %>/css/dashboard.css">
+	<script type="text/javascript">
+		$(function(){
+			var height = window.innerHeight - 70;
+			$(".main").css("height", height+"px");
+			$(".main").css("width","80%");
+			$(".main").css("float","right");
+			$(".main").css("padding","0px");
+			$("#mainiframe").css("height", height+"px");
+			$("#mainiframe").css("padding-top", "20px");
+
+		});
+	</script>
   </head>
   
   <body>
@@ -99,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        	<iframe id="mainiframe" frameborder="0" scrolling="no" width="100%" height="150%" src=""></iframe>
+        	<iframe id="mainiframe" frameborder="0" scrolling="auto" width="100%" height="100%" src=""></iframe>
         </div>
       </div>
     </div>

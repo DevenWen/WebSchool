@@ -15,6 +15,8 @@ public interface IZHGradesDao {
 
 	//通过学号查询
 	public ZHGrades findById(String stuid);
+	//通过专业查询学生评优名单
+	public List<ZHGrades> getAllByMajor(String major);
 	
 	/***分页查询数据*****/
 	//通过专业和班级进行分页查询

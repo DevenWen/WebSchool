@@ -61,7 +61,7 @@
 		班级:<span>${zclas}</span>	<br><br>
 	</div>
 	<form action="${pageContext.request.contextPath }/BGradesServlet?method=addBGrades&
-	stuid=${zstuid}&gradingtype=${gradingtype}" method="post" >
+	stuid=${zstuid}&name=${zname}&clas=${zclas}&gradingtype=${gradingtype}" method="post" >
     	<table border="1" align="center" width="60%">
         	<caption align="top" style="font-size:24px;margin:5px 0;font-weight: bold;" >学生综合测评评分表</caption>
             <tr>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>学生综合测评班评评分表</title>
+<title>查询的学生列表</title>
 <style type="text/css">
 	table td{
 		/*文字居中*/
@@ -25,8 +25,8 @@
 </head>
 
 <body>
-	<h3 align="center">查询要授权的学生</h3>
-	<form action="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher" method="post">
+	<h3 align="center">查询的学生列表</h3>
+	<form action="${pageContext.request.contextPath }/AddandCutServlet?method=listStudentsByTeacher" method="post">
 		<div align="center">
 			学号：<input type="text" name="stuid_search" value="${stuid_search}">
 			<input type="submit" style="width: 80px;height: 25px;font-size: 16px;" value="查询">
@@ -54,7 +54,7 @@
 				        <td>${stu.major }</td>
 				        <td>${stu.clas }</td>
 				        <td>
-				        	<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudent&stuid=${stu.stuid}&stuid_search=${stuid_search}&man=teacher">授权</a>&nbsp;
+				        	<a href="${pageContext.request.contextPath }/AddandCutServlet?method=updateView&stuid=${stu.stuid}&name=${stu.name}">修改评分</a>&nbsp;
 				        </td>
 		    		</tr>
 		    	</c:forEach>
@@ -70,10 +70,10 @@
   			<td colspan="6" align="center">
   				当前${requestScope.pageBean.currentPage }/${requestScope.pageBean.totalPage }页     &nbsp;&nbsp;
   				
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=1">首页</a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.totalPage}">末页</a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudentsByTeacher&stuid_search=${stuid_search}&currentPage=1">首页</a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudentsByTeacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudentsByTeacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudentsByTeacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.totalPage}">末页</a>
   			</td>
   		</tr>
     </table>

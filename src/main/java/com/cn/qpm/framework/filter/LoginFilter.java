@@ -50,7 +50,7 @@ public class LoginFilter implements Filter {
 		//在登陆Service中，当用户登陆成功的时候，会把LoginUser对象写入session中去
 		LoginUser user = UserUtil.getCurrentUser(servletRequest);
 		
-		if (path.indexOf("/login") > -1 || path.indexOf("/img/back.jpg") > -1 
+		if (path.indexOf("/login") > -1 || path.indexOf("/img/") > -1 
 				|| path.indexOf("/css/") > -1 || path.indexOf("/js/") > -1){
 			
 			/*

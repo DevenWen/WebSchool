@@ -84,13 +84,13 @@
 			
 		<tr>
 			<td colspan="2">
-				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=impowerToBz&stuid=${student.stuid }&authority=${authority }">
+				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=impowerToBz&stuid=${student.stuid }&authority=${authority }&man=teacher">
 					<input type="button" value="班长">
 				</a>&nbsp;
-				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=impowerToXpstu&stuid=${student.stuid }&authority=${authority }">
+				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=impowerToXpstu&stuid=${student.stuid }&authority=${authority }&man=teacher">
 					<input type="button" value="系评学生">
 				</a>&nbsp;
-				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&stuid_search=${stuid_search}">
+				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&stuid_search=${stuid_search}&man=teacher">
 					<input type="button" value="返回">
 				</a>&nbsp;
 			</td>

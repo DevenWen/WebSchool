@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>学生综合测评班评评分表</title>
+<title>学生列表</title>
 <style type="text/css">
 	table td{
 		/*文字居中*/
@@ -20,20 +20,10 @@
 	
 	/*显示鼠标所在的行*/
 	tr:hover{background-color:#CCC}
-</style>  
-
+</style>
 </head>
-
 <body>
-	<h3 align="center">查询要授权的学生</h3>
-	<form action="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher" method="post">
-		<div align="center">
-			学号：<input type="text" name="stuid_search" value="${stuid_search}">
-			<input type="submit" style="width: 80px;height: 25px;font-size: 16px;" value="查询">
-		</div>
-		<br>
-	</form>
-	
+	<center><h3>审核加扣分同学的名单</h3></center>
 	 <table align="center" border="1" width="700px">
     	<tr>
     		<th>编号</th>
@@ -43,7 +33,6 @@
     		<th>班级</th>
     		<th>操作</th>
     	</tr>
-    	   	    	
     	<c:choose>
   			<c:when test="${not empty requestScope.pageBean.pageData}">
 		    	<c:forEach items="${requestScope.pageBean.pageData}" var="stu" varStatus="varSta">
@@ -54,26 +43,26 @@
 				        <td>${stu.major }</td>
 				        <td>${stu.clas }</td>
 				        <td>
-				        	<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudent&stuid=${stu.stuid}&stuid_search=${stuid_search}&man=teacher">授权</a>&nbsp;
+				        	<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listAddAndCuts&stuid=${stu.stuid}&name=${stu.name}">查看</a>&nbsp;
 				        </td>
 		    		</tr>
 		    	</c:forEach>
-		     </c:when>
+		    </c:when>
   			<c:otherwise>
   				<tr>
   					<td colspan="6">对不起，没有你要找的数据</td>
   				</tr>
   			</c:otherwise>
   		</c:choose>
-  			
+  		
   		<tr>
   			<td colspan="6" align="center">
   				当前${requestScope.pageBean.currentPage }/${requestScope.pageBean.totalPage }页     &nbsp;&nbsp;
   				
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=1">首页</a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
-  				<a href="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher&stuid_search=${stuid_search}&currentPage=${requestScope.pageBean.totalPage}">末页</a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudents&currentPage=1">首页</a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudents&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudents&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
+  				<a href="${pageContext.request.contextPath }/AddandCutServlet?method=listStudents&currentPage=${requestScope.pageBean.totalPage}">末页</a>
   			</td>
   		</tr>
     </table>

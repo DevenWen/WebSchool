@@ -32,6 +32,14 @@
 	    <version>2.1</version>  
 	</dependency>
   	-->
+  	<!-- 导出excl表jar包 -->
+	<dependency>
+		<groupId>net.sourceforge.jexcelapi</groupId>
+		<artifactId>jxl</artifactId>
+		<version>2.6.10</version>
+	</dependency>
+  	
+  	
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -45,13 +53,13 @@
 		<artifactId>aspectjweaver</artifactId>
 		<version>1.8.6</version>
 	</dependency>
-	-->
+	
 	<dependency>
 		<groupId>org.aspectj</groupId>
 		<artifactId>aspectjrt</artifactId>
 		<version>1.8.6</version>
-	</dependency>
-    
+	</dependency> 
+    -->
     <!-- apache commons 的lang工具包 -->
     <dependency>
 		<groupId>commons-lang</groupId>

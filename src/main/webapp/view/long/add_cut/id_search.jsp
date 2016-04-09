@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>根据学号查询综合测评分</title>
+<title>根据学号查询学生</title>
 
 <style type="text/css">
 	table td{
@@ -24,8 +24,8 @@
 
 </head>
 <body>
-	<h3 align="center">根据学号查询被授权学生</h3>
-	<form action="${pageContext.request.contextPath }/ImpowerServlet?method=listStudents&man=teacher" method="post">
+	<h3 align="center">根据学号查询学生</h3>
+	<form action="${pageContext.request.contextPath }/AddandCutServlet?method=listStudentsByTeacher" method="post">
 		<div align="center">
 			学号：<input type="text" name="stuid_search">
 			<input type="submit" style="width: 80px;height: 25px;font-size: 16px;" value="查询">

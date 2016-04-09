@@ -254,8 +254,12 @@ public class XGradesServlet extends HttpServlet {
 			//执行添加方法
 			gradesService.addGrades(xgrades);
 			
+			//获取被评分学生基本信息
+			String zname = request.getParameter("name");
+			String zclas = request.getParameter("clas");
+			
 			//跳转
-			request.getRequestDispatcher("/XGradesServlet?method=listXGrades&stuid="+zstuid+"&gradingtype="+gradingtype).forward(request, response);
+			request.getRequestDispatcher("/XGradesServlet?method=listXGrades&stuid="+zstuid+"&name="+zname+"&clas="+zclas+"&gradingtype="+gradingtype).forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

@@ -13,11 +13,43 @@ public class ZHGrades {
 	private double xy_score;	//学业总分
 	private double wt_score;	//文体总分
 	private double zh_score;	//综合总分
+	
+	private int sx_place;	//思想分排名
+	private int xy_place;	//学业分排名
+	private int wt_place;	//文体分排名
+	private int zh_place;		//综合分排名
+	
+	
+	
 	public String getStuid() {
 		return stuid;
 	}
 	public void setStuid(String stuid) {
 		this.stuid = stuid;
+	}
+	public int getSx_place() {
+		return sx_place;
+	}
+	public void setSx_place(int sx_place) {
+		this.sx_place = sx_place;
+	}
+	public int getXy_place() {
+		return xy_place;
+	}
+	public void setXy_place(int xy_place) {
+		this.xy_place = xy_place;
+	}
+	public int getWt_place() {
+		return wt_place;
+	}
+	public void setWt_place(int wt_place) {
+		this.wt_place = wt_place;
+	}
+	public int getZh_place() {
+		return zh_place;
+	}
+	public void setZh_place(int zh_place) {
+		this.zh_place = zh_place;
 	}
 	public String getName() {
 		return name;

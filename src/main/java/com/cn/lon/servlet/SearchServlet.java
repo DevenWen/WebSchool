@@ -111,7 +111,7 @@ public class SearchServlet extends HttpServlet {
 			}
 			else if((major==null||major.length()==0)&&clas!=null&&clas.length()!=0){
 				//4.3如果专业为空,班级不为空，调用service,把数据传递pb对象中
-				zhGrades.getAllByMajor(pb, major);
+				zhGrades.getAllByClas(pb, clas);
 			}
 			
 			//5.把对象保存到域中

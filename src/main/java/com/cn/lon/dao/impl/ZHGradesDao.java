@@ -23,6 +23,32 @@ public class ZHGradesDao extends BaseDaoUtil implements IZHGradesDao{
 		List<ZHGrades> list = super.query(sql,paramsValue , ZHGrades.class);
 		return (list!=null&&list.size()>0) ? list.get(0) : null;
 	}
+	
+	//通过专业获取所有学生的综合评分排名
+	@Override
+	public List<ZHGrades> getAllByMajor(String major) {
+		String sql="select d.stuid as stuid, d.name as name,d.major as major,d.clas as clas,"
+				+ "d.sx_score as sx_score,sx.sx_place as sx_place,d.xy_score as xy_score,xy.xy_place as xy_place,"
+				+ "d.wt_score as wt_score,wt.wt_place as wt_place,d.zh_score as zh_score,zh.zh_place as zh_place "
+				+ "from (select a.stuid ,count(b.stuid)+1 as sx_place from (select * from view_totalgrades where major=?) as a "
+				+ "left join (select * from view_totalgrades where major= ?) as  b on a.sx_score < b.sx_score group by a.stuid) as  sx,"
+				+ "(select a.stuid  ,count(b.stuid)+1 as xy_place from (select * from view_totalgrades where major=?) as  a "
+				+ "left join (select * from view_totalgrades where major=?) as b on a.xy_score < b.xy_score group by a.stuid) as  xy,"
+				+ "(select a.stuid ,count(b.stuid)+1 as wt_place from (select * from view_totalgrades where major=?) as  a "
+				+ "left join (select * from view_totalgrades where major=?) as  b on a.wt_score < b.wt_score group by a.stuid) as  wt,"
+				+ "(select a.stuid ,count(b.stuid)+1 as zh_place from (select * from view_totalgrades where major=?) as  a"
+				+ " left join (select * from view_totalgrades where major=?) as  b on a.zh_score < b.zh_score group by a.stuid) as  zh,"
+				+ "(select * from view_totalgrades where major=?) as d "
+				+ "where  sx.stuid = d.stuid  and d.stuid = wt.stuid and  xy.stuid = d.stuid and d.stuid=zh.stuid "
+				+ "order by zh_score desc";
+		
+		Object[] paramsValue = {major,major,major,major,major,major,major,major,major};
+		
+		List<ZHGrades> list = super.query(sql,paramsValue , ZHGrades.class);
+		
+		return list;
+	}
+
 
 
 	
@@ -166,4 +192,7 @@ public class ZHGradesDao extends BaseDaoUtil implements IZHGradesDao{
 		return count.size();
 	}
 
+
+
+	
 }
