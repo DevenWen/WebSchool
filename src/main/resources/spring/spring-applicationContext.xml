@@ -15,7 +15,7 @@
                         http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
      
     <!-- 为SpringUtil注入ApplicationContext -->
-	<bean id="appContext" class="com.cn.qpm.framework.util.SpringUtil" lazy-init="false" />                    
+	<bean id="appContext" class="cn.com.qpm.framework.util.SpringUtil" lazy-init="false" />                    
 	 
 	<!-- XML热加载 begin      使用JDK ScheduledExecutorService的定时任务配置 -->
 	<!-- ScheduledThreadPoolExecutor集成工厂 -->
@@ -39,11 +39,11 @@
 		<property name="fixedRate" value="true" />
 	</bean>
 	
-	<bean id="executorJob" class="com.cn.qpm.framework.springdynaload.SpringBeanReloadJob" />
+	<bean id="executorJob" class="cn.com.qpm.framework.springdynaload.SpringBeanReloadJob" />
 	<!-- XML热加载 end -->
 	
 	<!-- AOP的demo 
-	<bean id="securityHandler" class="com.cn.qpm.framework.aop.SecurityHandler"></bean>
+	<bean id="securityHandler" class="cn.com.qpm.framework.aop.SecurityHandler"></bean>
 	<aop:config>
 	-->
 		<!-- 指定SecutityHander为aspect
@@ -59,6 +59,6 @@
 	
 	<!-- -->
 	<aop:aspectj-autoproxy/>  
-    <bean id="myInterceptor" class="com.cn.qpm.framework.aop.MyInterceptor"/>
+    <bean id="myInterceptor" class="cn.com.qpm.framework.aop.MyInterceptor"/>
 
 </beans>

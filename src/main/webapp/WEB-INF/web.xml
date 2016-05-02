@@ -32,7 +32,7 @@
   <!-- 使用自定义的XmlWebApplicationContext 动态载入xml文件 -->
   <context-param>
   		<param-name>contextClass</param-name>
-  		<param-value>com.cn.qpm.framework.springdynaload.XmlRefreshWebApplicationContext</param-value>
+  		<param-value>cn.com.qpm.framework.springdynaload.XmlRefreshWebApplicationContext</param-value>
   </context-param>
   
   
@@ -86,7 +86,7 @@
   <!-- 配置登陆过滤器 -->
   <filter>
   	<filter-name>loginFilter</filter-name>
-  	<filter-class>com.cn.qpm.framework.filter.LoginFilter</filter-class>
+  	<filter-class>cn.com.qpm.framework.filter.LoginFilter</filter-class>
   </filter>
   
   <filter-mapping>

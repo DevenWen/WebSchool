@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://xbean.apache.org/schemas/spring/1.0"  
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
-    xmlns:db="java://com.cn.qpm.framework.dashboard.model"  
+    xmlns:db="java://cn.com.qpm.framework.dashboard.model"  
     xsi:schemaLocation="http://xbean.apache.org/schemas/spring/1.0 classpath:/org/apache/xbean/spring/spring-beans.xsd">  
     
     <!-- 控制台demo -->

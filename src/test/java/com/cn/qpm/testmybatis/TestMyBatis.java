@@ -10,9 +10,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cn.com.qpm.usermanage.model.LoginUser;
+import cn.com.qpm.usermanage.service.IUserService;
+
 import com.alibaba.fastjson.JSON;
-import com.cn.qpm.usermanage.model.LoginUser;
-import com.cn.qpm.usermanage.service.IUserService;
 
 /**
  * 

@@ -3,7 +3,7 @@ package com.cn.qpm.testxbean;
 import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
 import org.junit.Test;
 
-import com.cn.qpm.usermanage.model.LoginUser;
+import cn.com.qpm.usermanage.model.LoginUser;
 
 /**
  * declaration： 

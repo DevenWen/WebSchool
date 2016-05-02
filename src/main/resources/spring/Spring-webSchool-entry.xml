@@ -13,12 +13,12 @@
     <!-- 控制台方面的配置 begin -->  
     
     <!-- 配置控制台的扫描 -->
-    <bean class="com.cn.qpm.framework.processor.DashboardProcessor">
+    <bean class="cn.com.qpm.framework.processor.DashboardProcessor">
     	<property name="boardFactory" ref="dashboardFactory"></property>
     </bean>
     <!-- 配置控制台工厂 -->   
     <bean id="dashboardFactory"
-		class="com.cn.qpm.framework.dashboard.model.DashboardFactory">
+		class="cn.com.qpm.framework.dashboard.model.DashboardFactory">
 	</bean>
 	
 	<!-- 控制台方面的配置 end -->
